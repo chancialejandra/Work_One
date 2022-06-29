@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: app-courses
+#  profiles:
+#    active: prod
+server:
+  servlet:
+    context-path: /courses/api/v1
+  port: 9080
