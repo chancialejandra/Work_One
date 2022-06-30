@@ -10,44 +10,44 @@ import java.util.Date;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name= "PROJECTTASK")
+//@Entity
+//@Table(name= "PROJECTTASK")
 public class ProjectTask {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NAME")
+//    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "SUMMARY")
+//    @Column(name = "SUMMARY")
     private String summary;
 
-    @Column(name = "ACCEPTANCE_CRITERIA")
+//    @Column(name = "ACCEPTANCE_CRITERIA")
     private String acceptanceCriteria;
 
-    @Column(name = "STATUS")
+//    @Column(name = "STATUS")
     private String status;
 
-    @Column(name = "PRIORITY")
+//    @Column(name = "PRIORITY")
     private int priority;
 
-    @Column(name = "HOURS")
+//    @Column(name = "HOURS")
     private Double hours;
 
-    @Column(name = "START_DATE")
+//    @Column(name = "START_DATE")
     private Date startDate;
 
-    @Column(name = "END_DATE")
+//    @Column(name = "END_DATE")
     private Date endDate;
 
-    @Column(name = "PROJECT_IDENTIFIER")
+//    @Column(name = "PROJECT_IDENTIFIER")
     private String proctIdentifier;
 
-    @Column(name = "BACKLOG")
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @Column(name = "BACKLOG")
+//    @ManyToOne(fetch = FetchType.EAGER)
     private Backlog backlog;
 
 }
