@@ -10,24 +10,25 @@ import java.util.List;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
-//@Table(name = "BACKLOG")
+@Entity
+@Table(name = "backlog")
 public class Backlog {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "ID")
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long backlogId;
 
-//    @Column(name = "PROJECT_IDENTIFIER")
+    @Column(name = "project_identifier")
     private String projectIdentifier;
 
-//    @Column(name = "PROJECT")
-//    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "project_identifier")
     private Project project;
 
-//    @Column(name = "PROJECT_TASK")
-//    @OneToMany(mappedBy = "backlog",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-    private List<ProjectTask> projectTask;
+    @JoinColumn(name = "project_task")
+    @OneToMany(mappedBy = "backlogId",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+
+    private List<Task> projectTask;
 
 }

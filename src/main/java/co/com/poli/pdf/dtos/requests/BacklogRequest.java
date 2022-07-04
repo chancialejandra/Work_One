@@ -1,7 +1,7 @@
 package co.com.poli.pdf.dtos.requests;
 
 import co.com.poli.pdf.persistence.entity.Project;
-import co.com.poli.pdf.persistence.entity.ProjectTask;
+import co.com.poli.pdf.persistence.entity.Task;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -19,14 +18,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BacklogRequestDto {
+public class BacklogRequest {
 
     @NotBlank(message = "Project Identifier can't be empty.")
     private String projectIdentifier;
 
-    @Valid
+//    @Valid
     private Project project;
 
 //    @NotEmpty(message = "List can't be empty")
-    private List<@Valid ProjectTask> projectTask;
+    private List<@Valid Task> projectTask;
 }

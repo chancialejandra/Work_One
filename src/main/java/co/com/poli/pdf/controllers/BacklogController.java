@@ -1,8 +1,7 @@
 package co.com.poli.pdf.controllers;
 
-import co.com.poli.pdf.dtos.requests.BacklogRequestDto;
-import co.com.poli.pdf.dtos.responses.BacklogResponseDto;
-import co.com.poli.pdf.services.interfaces.IBacklogService;
+import co.com.poli.pdf.dtos.requests.BacklogRequest;
+import co.com.poli.pdf.services.BacklogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +16,14 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class BacklogController {
 
-    private final IBacklogService backlogService;
+    private final BacklogService backlogService;
 
     @PostMapping()
-    public ResponseEntity saveBacklogs(@Valid @RequestBody BacklogRequestDto backlog){
+    public ResponseEntity saveBacklogs(@Valid @RequestBody BacklogRequest backlog){
         var response = backlogService.saveBacklog(backlog);
-//        if (response.isEmpty()) {
-//
-//        }
-//        var response1 = BacklogResponseDto.builder().build();
+        if (response.getId() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

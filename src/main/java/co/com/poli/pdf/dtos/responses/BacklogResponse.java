@@ -1,7 +1,5 @@
 package co.com.poli.pdf.dtos.responses;
 
-import co.com.poli.pdf.persistence.entity.Project;
-import co.com.poli.pdf.persistence.entity.ProjectTask;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
@@ -11,10 +9,10 @@ import java.util.List;
 @Data
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BacklogResponseDto {
+public class BacklogResponse {
 
     private Long id;
     private String projectIdentifier;
-    private Project project;
-    private List<ProjectTask> projectTask;
+    private ProjectResponse project;
+    private List<TaskResponse> projectTask;
 }

@@ -17,9 +17,9 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> malformedJsonException(HttpMessageNotReadableException exc) {
 
         ApiError apiError = ApiError.builder()
+
                             .message("Json is malformed")
                             .status(HttpStatus.BAD_REQUEST.value()).build();
-
         return ResponseEntity.status(apiError.getStatus()).body(apiError);
 
     }
@@ -28,18 +28,19 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> malformedBodyException(MethodArgumentNotValidException e) {
 
-        ApiError apiError =
-                new ApiError(
-                        "Input is invalid", e.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST.value());
+        ApiError apiError = ApiError.builder()
+                .error("Input is invalid")
+                .message(e.getFieldError().getDefaultMessage())
+                .status(HttpStatus.BAD_REQUEST.value()).build();
         return ResponseEntity.status(apiError.getStatus()).body(apiError);
 
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiError> methodNotSupportedException(HttpRequestMethodNotSupportedException e) {
-        ApiError apiError =
-                new ApiError(
-                        "Method Not Supported", e.getMessage(), HttpStatus.METHOD_NOT_ALLOWED.value());
+        ApiError apiError = ApiError.builder()
+                .message("Input is invalid")
+                .status(HttpStatus.BAD_REQUEST.value()).build();
         return ResponseEntity.status(apiError.getStatus()).body(apiError);
     }
 }

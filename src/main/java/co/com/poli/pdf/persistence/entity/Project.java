@@ -1,5 +1,7 @@
 package co.com.poli.pdf.persistence.entity;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,32 +12,31 @@ import java.util.Date;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
-//@Table(name = "PROJECT")
+@Entity
+@Table(name = "project")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Project {
 
-//    @Id
+    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-//    @Column(name = "PROJECT_NAME")
+    @Column(name = "project_name")
     private String projectName;
 
-//    @Column(name = "PROJECT_IDENTIFIER")
-    private String ProjectIdentifier;
+    @Column(name = "project_identifier")
+    private String projectIdentifier;
 
-//    @Column(name = "DESCRIPTION")
     private String description;
 
-//    @Column(name = "START_DATE")
+    @Column(name = "start_date")
     private Date startDate;
 
-//    @Column(name = "END_DATE")
+    @Column(name = "end_date")
     private Date endDate;
 
-//    @Column(name = "BACKLOG")
-//    @OneToOne(mappedBy = "project", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "project", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private Backlog backlog;
 
 }
