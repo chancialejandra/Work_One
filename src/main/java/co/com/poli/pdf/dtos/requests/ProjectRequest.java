@@ -18,7 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ProjectRequestDto {
+public class ProjectRequest {
 
     @NotBlank(message = "Project Name can't be empty.")
     private String projectName;

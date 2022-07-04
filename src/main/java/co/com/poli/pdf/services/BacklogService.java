@@ -17,36 +17,23 @@ public class BacklogService implements IBacklogService {
     private final IBacklogRepository backlogRepository;
     private final BacklogRequestToBlacklog mapper;
 
-
-    @Override
-    public BacklogResponse saveBacklog(Backlog backlog) {
-        return null;
-    }
-
     @Override
     public BacklogResponse saveBacklog(BacklogRequest backlogRequest) {
+        BacklogResponse backlogResponse = null;
         Backlog backlog = mapper.map(backlogRequest);
-        BacklogResponse responseDTO = BacklogResponse.builder().projectIdentifier("malo").build();
 
         if (backlog.getProjectIdentifier().equals(backlog.getProject().getProjectIdentifier())) {
-
             try {
                 var response = backlogRepository.save(backlog);
-                BacklogResponse responseDTO2 = BacklogResponse.builder()
+                backlogResponse = BacklogResponse.builder()
                         .id(response.getBacklogId())
                         .projectIdentifier(response.getProjectIdentifier())
                         .build();
-                return responseDTO2;
-
+                return backlogResponse;
             } catch (Exception e) {
                 System.out.println("Error guardando");
             }
-
-
-        } else {
-            return responseDTO;
         }
-//
-        return responseDTO;
+        return backlogResponse;
     }
 }

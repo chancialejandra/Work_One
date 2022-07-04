@@ -16,7 +16,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id_task")
     private Long id;
 
     private String name;
@@ -41,8 +41,8 @@ public class Task {
     @Column(name = "project_identifier")
     private String productIdentifier;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "id_backlog")
     private Backlog backlog;
 
 }

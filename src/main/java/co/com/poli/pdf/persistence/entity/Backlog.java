@@ -16,19 +16,17 @@ public class Backlog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id_backlog")
     private Long backlogId;
 
     @Column(name = "project_identifier")
     private String projectIdentifier;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "project_identifier")
+    @JoinColumn(name = "id_project", referencedColumnName = "id_project")
     private Project project;
 
-    @JoinColumn(name = "project_task")
-    @OneToMany(mappedBy = "backlogId",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-
+    @OneToMany(mappedBy = "backlog",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Task> projectTask;
 
 }

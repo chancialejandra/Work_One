@@ -1,7 +1,14 @@
 package co.com.poli.pdf.dtos.responses;
 
-import java.util.Date;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.Builder;
+import lombok.Data;
 
+import java.util.Date;
+@Data
+@Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TaskResponse {
 
     private Long id;

@@ -19,7 +19,7 @@ public class Project {
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id_project")
     private Long id;
 
     @Column(name = "project_name")
