@@ -1,6 +1,7 @@
 package co.com.poli.pdf.controllers;
 
 import co.com.poli.pdf.dtos.requests.BacklogRequest;
+import co.com.poli.pdf.exceptions.ControllerExceptionHandler;
 import co.com.poli.pdf.services.BacklogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class BacklogController {
     @PostMapping()
     public ResponseEntity saveBacklogs(@Valid @RequestBody BacklogRequest backlog){
         var response = backlogService.saveBacklog(backlog);
-        if (response.getId() == null){
+        if (response == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

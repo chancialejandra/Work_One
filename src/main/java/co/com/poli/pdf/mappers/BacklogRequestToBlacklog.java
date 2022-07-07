@@ -13,7 +13,7 @@ public class BacklogRequestToBlacklog implements IMapper<BacklogRequest, Backlog
     public Backlog map(BacklogRequest in) {
             Backlog backlog = new Backlog();
             backlog.setProjectIdentifier(in.getProjectIdentifier());
-            backlog.setProject(in.getProject());
+//            backlog.setProject(in.getProject());
 //            backlog.getProjectTask(in.getProjectTask());
         return backlog;
 

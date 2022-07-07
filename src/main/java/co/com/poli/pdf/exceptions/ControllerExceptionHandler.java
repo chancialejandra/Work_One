@@ -17,6 +17,8 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> malformedJsonException(HttpMessageNotReadableException exc) {
 
         ApiError apiError = ApiError.builder()
+                .error(exc.getMessage()
+                )
 
                             .message("Json is malformed")
                             .status(HttpStatus.BAD_REQUEST.value()).build();
@@ -29,7 +31,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> malformedBodyException(MethodArgumentNotValidException e) {
 
         ApiError apiError = ApiError.builder()
-                .error("Input is invalid")
+                .error("La entrada no es válida")
                 .message(e.getFieldError().getDefaultMessage())
                 .status(HttpStatus.BAD_REQUEST.value()).build();
         return ResponseEntity.status(apiError.getStatus()).body(apiError);

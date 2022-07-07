@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -20,12 +21,13 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class BacklogRequest {
 
-    @NotBlank(message = "Project Identifier can't be empty.")
+//    @NotBlank(message = "Project Identifier can't be empty.")
+    @NotEmpty(message = "El campo no puede estar vacío.")
     private String projectIdentifier;
 
-//    @Valid
-    private Project project;
+    @Valid
+    private ProjectRequest project;
 
-//    @NotEmpty(message = "List can't be empty")
-    private List<@Valid Task> projectTask;
+////    @NotEmpty(message = "List can't be empty")
+//    private List<@Valid Task> projectTask;
 }

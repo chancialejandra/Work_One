@@ -1,5 +1,6 @@
 package co.com.poli.pdf.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_task")
+    @Column(name = "task_id")
     private Long id;
 
     private String name;
@@ -42,7 +43,6 @@ public class Task {
     private String productIdentifier;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "id_backlog")
+    @JoinColumn(name = "backlog_id")
     private Backlog backlog;
-
 }

@@ -1,8 +1,7 @@
 package co.com.poli.pdf.controllers;
 
-import co.com.poli.pdf.dtos.requests.BacklogRequest;
+
 import co.com.poli.pdf.dtos.requests.ProjectRequest;
-import co.com.poli.pdf.services.BacklogService;
 import co.com.poli.pdf.services.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,11 +25,7 @@ public class ProjectController {
     @PostMapping()
     public ResponseEntity saveProjects(@Valid @RequestBody ProjectRequest project){
         var response = projectService.saveProject(project);
-
-
-        if (response.getId() == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
     }
 }

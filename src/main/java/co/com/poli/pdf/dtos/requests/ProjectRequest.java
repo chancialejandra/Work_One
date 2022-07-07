@@ -1,39 +1,43 @@
 package co.com.poli.pdf.dtos.requests;
 
 import co.com.poli.pdf.persistence.entity.Backlog;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import lombok.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ProjectRequest {
 
-    @NotBlank(message = "Project Name can't be empty.")
+    @NotEmpty(message = "El nombre del proyecto no puede estar vacío.")
     private String projectName;
 
-    @NotBlank(message = "Project Identifier can't be empty.")
-    @Size(min= 5, max = 7, message = "The length of the project identifier must be between 5 and 50 characters\"")
+    @NotBlank(message = "El identificador de proyecto no puede estar vacío")
+    @Size(min= 5, max = 7, message = "La longitud del identificador del proyecto debe tener entre 5 y 7 caracteres")
     private String ProjectIdentifier;
 
-    @NotBlank(message = "Description can't be empty.")
+    @NotBlank(message = "La descripción no puede estar vacía.")
     private String description;
 
-    private Date startDate;
+    private LocalDate startDate;
 
-    private Date endDate;
+    private LocalDate endDate;
 
-    @Valid
-    private Backlog backlog;
 }
