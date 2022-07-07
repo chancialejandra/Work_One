@@ -18,36 +18,32 @@ import org.springframework.stereotype.Service;
 public class BacklogService implements IBacklogService {
 
     private final IBacklogRepository backlogRepository;
+
+    private final ProjectService projectService;
     private final BacklogRequestToBlacklog mapperBacklog;
     private final ProjectRequestToProject mapperProject;
 
     @Override
     public BacklogResponse saveBacklog(BacklogRequest backlogRequest) {
         Project project = mapperProject.map(backlogRequest.getProject());
-        Backlog backlog = mapperBacklog.map(backlogRequest);
-
-//        var backlogmapper = backlog.setProject(project);
-        BacklogResponse responseDTO = BacklogResponse.builder().projectIdentifier("malo").build();
+        Backlog backlog = mapperBacklog.mapp(backlogRequest, project);
 
         if (backlog.getProjectIdentifier().equals(backlog.getProject().getProjectIdentifier())) {
 
             try {
                 var response = backlogRepository.save(backlog);
+                ProjectResponse response1 = projectService.saveProject(backlogRequest.getProject());
                 BacklogResponse responseDTO2 = BacklogResponse.builder()
                         .id(response.getBacklogId())
                         .projectIdentifier(response.getProjectIdentifier())
+                        .project(response1)
                         .build();
                 return responseDTO2;
 
             } catch (Exception e) {
                 System.out.println("Error guardando");
             }
-
-
-        } else {
-            return responseDTO;
         }
-//
-        return responseDTO;
+        return null;
     }
 }

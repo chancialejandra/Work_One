@@ -21,13 +21,10 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class BacklogRequest {
 
-//    @NotBlank(message = "Project Identifier can't be empty.")
-    @NotEmpty(message = "El campo no puede estar vacío.")
+    @NotEmpty(message = "El identificador de proyecto no puede estar vacío")
     private String projectIdentifier;
 
     @Valid
     private ProjectRequest project;
 
-////    @NotEmpty(message = "List can't be empty")
-//    private List<@Valid Task> projectTask;
 }

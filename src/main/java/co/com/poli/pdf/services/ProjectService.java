@@ -9,8 +9,6 @@ import co.com.poli.pdf.services.interfaces.IProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

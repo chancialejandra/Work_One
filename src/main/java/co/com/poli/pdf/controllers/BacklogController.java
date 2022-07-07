@@ -1,6 +1,7 @@
 package co.com.poli.pdf.controllers;
 
 import co.com.poli.pdf.dtos.requests.BacklogRequest;
+import co.com.poli.pdf.exceptions.ApiError;
 import co.com.poli.pdf.exceptions.ControllerExceptionHandler;
 import co.com.poli.pdf.services.BacklogService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,11 @@ public class BacklogController {
     public ResponseEntity saveBacklogs(@Valid @RequestBody BacklogRequest backlog){
         var response = backlogService.saveBacklog(backlog);
         if (response == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            ApiError apiError = ApiError.builder()
+                    .error("La entrada no es válida")
+                    .message("project_identifier no es igual al del project")
+                    .status(HttpStatus.BAD_REQUEST.value()).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

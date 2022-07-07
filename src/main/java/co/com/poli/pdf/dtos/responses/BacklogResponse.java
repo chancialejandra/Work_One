@@ -14,5 +14,4 @@ public class BacklogResponse {
     private Long id;
     private String projectIdentifier;
     private ProjectResponse project;
-    private List<TaskResponse> projectTask;
 }
