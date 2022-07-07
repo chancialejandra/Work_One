@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +40,11 @@ public class ProjectService implements IProjectService {
         }
         return projectResponse;
     }
+
+    @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
+    }
+
 
 }
